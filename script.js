@@ -1,2 +1,4 @@
-// code for the actual script that runs the game  
-import
+import Deck from './deck.js'
+
+const deck = new Deck()
+console.log(deck.cardsc) 
