@@ -7,6 +7,10 @@ export default class Deck {
     constructor(cards =  freshDeck()) {
         this.cards = cards
     }
+
+    shuffle() {
+        this.cards.sort((a,b) => Math.random() - .5)
+    }
 }
 
 class Card {
