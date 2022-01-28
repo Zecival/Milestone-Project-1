@@ -8,8 +8,17 @@ export default class Deck {
         this.cards = cards
     }
 
+    get numberOfCards() {
+        return this.cards.length
+    }
+    // code block below obtains a random index, swaps the current card with a new card; looping through all cards and swapping with another card
     shuffle() {
-        this.cards.sort((a,b) => Math.random() - .5)
+        for (let i = this.numberOfCards - 1; i > 0; i --) {
+            const newIndex = Math.floor(Math.random() * (i + 1))
+            const oldValue = this.cards[newIndex]
+            this.cards[newIndex] = this.cards[i]
+            this.cards[i] = oldValue
+        }
     }
 }
 

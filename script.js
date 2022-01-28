@@ -1,4 +1,5 @@
 import Deck from './deck.js'
 
 const deck = new Deck()
-console.log(deck.cardsc) 
+deck.shuffle()
+console.log(deck.cards) 
