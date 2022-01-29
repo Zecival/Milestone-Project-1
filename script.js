@@ -2,17 +2,18 @@ import Deck from './deck.js'
 
 const CARD_VALUE_MAP = {
     "2": 2,
-    "3": 2,
-    "4": 2,
-    "5": 2,
-    "6": 2,
-    "7": 2,
-    "8": 2,
-    "9": 2,
-    "10": 2,
-    "j": 2,
-    "q": 2,
-    "k": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    J: 11,
+    Q: 12,
+    K: 13,
+    A: 14,
 }
 
 const computerCardSlot = docuemnt.querySelector('.computer-card-slot')
@@ -21,10 +22,14 @@ const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck')
 const text = document.querySelector('.text')
 
-let playerDeck, computerDeck
-let inRound = false
+let playerDeck, computerDeck, inRound, stop
 
 document.addEventListener('click', () => {
+    if (stop) {
+        startGame()
+        return
+    }
+    
     if(inRound) {
         cleanBeforeRound()
     } else {
@@ -40,6 +45,7 @@ function startGame () {
     playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
     computerDeck = new Deck(deck.cards.slice(0, deckMidpoint, deck.numberOfCards))
     inRound = false
+    stop = false
 
     cleanBeforeRound()
 }
@@ -63,6 +69,28 @@ function flipCards() {
     computerCardSlot.appendChild(Card.getHTML())
 
     updateDeckCount()
+
+    if (isRoundWinner(playerCard, computerCard)) {
+        text.innerText = "Win"
+        playerDeck.push(playerCard)
+        playerDeck.push(computerCard)
+    } else if (isRoundWinner(computerCard, playerCard)) {
+        text.innerText = "Lose"
+        computerDeck.push(playerCard)
+        computerDeck.push(computerCard)
+    } else {
+        text.innerText = "Draw"
+        playerDeck.push(playerCard)
+        computerDeck.push(computerCard)
+    }
+
+    if (isGameOver(playerDeck)) {
+        text.innerText = "You Lose!"
+        stop = true
+    } else if (isGameOver(computerDeck)) {
+        text.innerText = "You Win!"
+        stop = true 
+    }
 }
 
 function updateDeckCount() {
@@ -71,5 +99,9 @@ function updateDeckCount() {
 }
 
 function isRoundWinner(cardOne, cardTwo) {
+    return CARD_VALUE_MAP[cardOne.value] > CARD_VALUE_MAP[cardTwo.value]
+}
 
+function isGameOver(deck) {
+    return deck.numberOfCards === 0
 }
