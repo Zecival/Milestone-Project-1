@@ -11,6 +11,15 @@ export default class Deck {
     get numberOfCards() {
         return this.cards.length
     }
+
+    pop() {
+        return this.cards.shift()
+    }
+
+    push(card) {
+        this.cards.push(card)
+    }
+    
     // code block below obtains a random index, swaps the current card with a new card; looping through all cards and swapping with another card
     shuffle() {
         for (let i = this.numberOfCards - 1; i > 0; i --) {
@@ -36,7 +45,7 @@ class Card {
         const cardDiv = document.createElement ('div')
         cardDiv.innerText = this.suit
         cardDiv.classList.add("card", this.color)
-        cardDiv.dataset.value = $(this.value) $(this.suit)
+        cardDiv.dataset.value = $(this.value); $(this.suit)
         return cardDiv
     }
 }
