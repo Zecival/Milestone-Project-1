@@ -28,6 +28,14 @@ class Card {
         this.value = value
     }
 }
+
+function freshDeck() {
+    return SUITS.flatMap(suit => {
+        return VALUES.map(value => {
+            return new Card(suit, value) 
+        })
+    })
+}
 // creates a brand new deck of cards with all 52 cards, one for each suit and value combination
 // goal: loop through all the suits, loop through all the values and then combine them all together inside one array
 // Flatmap function used to condense multiple arrays into one 
