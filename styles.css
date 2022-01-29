@@ -88,10 +88,8 @@ body {
   transform: rotate(180deg);
 }
 
-@media (max-width:629px) {
-  img#optionalstuff {
-    display: none;
-  }
-  body { zoom: 100%;
+@media only screen and (max-width: 600px) {
+  body {
+    zoom: 150%;
   }
 }
