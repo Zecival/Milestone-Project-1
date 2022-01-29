@@ -6,5 +6,9 @@ For the ranking of cards, the highest value will win; this is the order of the c
 
 ## Installation
 
-Fork or clone the repository, then run npx serve.
+Fork or clone the repository from https://github.com/Zecival/Milestone-Project-1, then run npx serve.
 ```npx serve .```
+
+## Gitpage Link
+
+https://zecival.github.io/Milestone-Project-1/
